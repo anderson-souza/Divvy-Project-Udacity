@@ -41,10 +41,8 @@ input("Aperte Enter para continuar...")
 # TAREFA 2
 # TODO: Imprima o `gênero` das primeiras 20 linhas
 print("\nTAREFA 2: Imprimindo o gênero das primeiras 20 amostras")
-for data in data_list:
-    for i in range(20):
-        print(data[6])
-    break
+for sample in data_list[:20]:
+    print(sample[6])
 
 # Ótimo! Nós podemos pegar as linhas(samples) iterando com um for, e as colunas(features) por índices.
 # Mas ainda é difícil pegar uma coluna em uma lista. Exemplo: Lista com todos os gêneros
@@ -54,6 +52,8 @@ input("Aperte Enter para continuar...")
 # TODO: Crie uma função para adicionar as colunas(features) de uma lista em outra lista, na mesma ordem
 def column_to_list(data, index):
     column_list = []
+    for list in data:
+        column_list.append(list)
     # Dica: Você pode usar um for para iterar sobre as amostras, pegar a feature pelo seu índice, e dar append para uma lista
     return column_list
 
