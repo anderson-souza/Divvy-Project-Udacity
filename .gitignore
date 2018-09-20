@@ -1,3 +1,5 @@
+#Não subir arquivo CSV pro github
+csv_files/
 
 # Created by https://www.gitignore.io/api/linux,python,windows,visualstudiocode
 
