@@ -28,7 +28,7 @@ input("Aperte Enter para continuar...")
 # TAREFA 1
 # TODO: Imprima as primeiras 20 linhas usando um loop para identificar os dados.
 print("\n\nTAREFA 1: Imprimindo as primeiras 20 amostras")
-for i in range(20):
+for i in range(20): #Estrutura de repetição que repetirá 20 vezes, imprimindo os 20 primeiros registros
     print(data_list[i])
 
 # Vamos mudar o data_list para remover o cabeçalho dele.
@@ -41,7 +41,7 @@ input("Aperte Enter para continuar...")
 # TAREFA 2
 # TODO: Imprima o `gênero` das primeiras 20 linhas
 print("\nTAREFA 2: Imprimindo o gênero das primeiras 20 amostras")
-for sample in data_list[:20]:
+for sample in data_list[:20]: #Estrutura de repetição utilizada para imprimir apenas o gênero  da lista
     print(sample[6])
 
 # Ótimo! Nós podemos pegar as linhas(samples) iterando com um for, e as colunas(features) por índices.
@@ -53,10 +53,10 @@ input("Aperte Enter para continuar...")
 def column_to_list(data, index):
     """Converte uma lista em outra lista
         INPUT:
-        data: lista a ser convertida
-        index: número da coluna para transformar em outra lista
+            data: lista a ser convertida
+            index: número da coluna para transformar em outra lista
         OUTPUT:
-        column_list: retorna lista com os dados da coluna informada no INPUT
+            column_list: retorna lista com os dados da coluna informada no INPUT
     """
     column_list = []
     for list in data:
@@ -99,8 +99,9 @@ input("Aperte Enter para continuar...")
 def count_gender(data_list):
     """Conta a quantidade de gêneros em uma lista
         INPUT: 
-        data_list: lista de dados utilizada para calcular
-        OUTPUT: retorna uma lista de 2 elementos, sendo o primeiro a quantidade de Masculinos, e o segundo a quantidade de Femininos
+            data_list: lista de dados utilizada para calcular
+        OUTPUT: 
+            retorna uma lista de 2 elementos, sendo o primeiro a quantidade de Masculinos, e o segundo a quantidade de Femininos
     """
     male = column_to_list(data_list, -2).count("Male")
     female = column_to_list(data_list, -2).count("Female")
@@ -124,9 +125,9 @@ input("Aperte Enter para continuar...")
 def most_popular_gender(data_list):
     """Calcula e retorna o gênero mais popular
         INPUT: 
-        data_list: lista de dados utilizada para verificar a quantidade de generos
+            data_list: lista de dados utilizada para verificar a quantidade de generos
         OUTPUT:
-        answer: String com o nome do gênero mais popular. [Male/Female ou Equal]  
+            answer: String com o nome do gênero mais popular. [Male/Female ou Equal]  
     """
     count = count_gender(data_list)
     if(count[0] > count[1]):
