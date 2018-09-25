@@ -28,8 +28,8 @@ input("Aperte Enter para continuar...")
 # TAREFA 1
 # TODO: Imprima as primeiras 20 linhas usando um loop para identificar os dados.
 print("\n\nTAREFA 1: Imprimindo as primeiras 20 amostras")
-for i in range(20): #Estrutura de repetição que repetirá 20 vezes, imprimindo os 20 primeiros registros
-    print(data_list[i])
+for index in range(20): #Estrutura de repetição que repetirá 20 vezes, imprimindo os 20 primeiros registros
+    print(data_list[index]) #Alterado conforme Feedback da Udacity
 
 # Vamos mudar o data_list para remover o cabeçalho dele.
 data_list = data_list[1:]
@@ -163,8 +163,8 @@ input("Aperte Enter para continuar...")
 # TODO: Crie um gráfico similar para user_types. Tenha certeza que a legenda está correta.
 print("\nTAREFA 7: Verifique o gráfico!")
 user_types = column_to_list(data_list, -3)
-types = ["Subscriber", "Customer"]
-quantity = list([user_types.count("Subscriber"), user_types.count("Customer")])
+types = ["Subscriber", "Customer", "Dependent"]
+quantity = list([user_types.count("Subscriber"), user_types.count("Customer"), user_types.count("Dependent")])
 y_pos = list(range(len(types)))
 plt.bar(y_pos, quantity)
 plt.ylabel('Quantidade')
@@ -193,11 +193,40 @@ input("Aperte Enter para continuar...")
 # Você não deve usar funções prontas para isso, como max() e min().
 trip_duration_list = column_to_list(data_list, 2)
 
-trip_list = sorted([int(x) for x in trip_duration_list], key=int) #Converte cada elemento para int e ordena
+trip_list = sorted([int(trip) for trip in trip_duration_list], key=int) #Converte cada elemento para int e ordena #Alterado conforme feedback da Udacity
 min_trip = trip_list[0] #Pega o primeiro elemento
 max_trip = trip_list[-1] #Pega o último elemento
-mean_trip = sum(trip_list) / len(trip_list)
-median_trip = trip_list[len(trip_list) // 2]
+
+def calcularMedia(data_list):
+    """ Função utilizada para calcular a média de uma lista
+        INPUT: 
+            data_list: Lista utilizada para calcular a média
+        OUTPUT: 
+            result: retorna o resultado da média da lista
+    """
+    total = 0
+    for data in data_list:
+        total += data
+    result = total / len(data_list)
+    return result
+
+def calcularMediana(data_list):
+    """Função utilizada para calcular a mediana de uma lista.
+        *Esta função leva em consideração que a lista já está ordenada.
+        INPUT:
+            data_list: Lista utilizada para calcular a mediana
+        OUTPUT:
+            result: retorna o resultado da mediana da lista
+    """
+    tamanho_lista = len(data_list) #Pega o tamanho da lista
+    if (tamanho_lista % 2 == 0): #Verifica se o tamanho da lista é par
+        result = (data_list[tamanho_lista / 2] + data_list[(tamanho_lista / 2) + 1]) / 2 #Pega o elemento do meio da lista, soma com o elemento seguinte e divide por 2
+    else: #Caso seja impar, executa o código abaixo
+        result = data_list[tamanho_lista // 2]
+    return result
+
+mean_trip = calcularMedia(trip_list) #Calcula a média através da função criada acima
+median_trip = calcularMediana(trip_list) #Calcula a mediana através da função criada acima
 
 
 print("\nTAREFA 9: Imprimindo o mínimo, máximo, média, e mediana")
@@ -244,13 +273,14 @@ input("Aperte Enter para continuar...")
 # TODO: Crie uma função para contar tipos de usuários, sem definir os tipos
 # para que nós possamos usar essa função com outra categoria de dados.
 print("Você vai encarar o desafio? (yes ou no)")
-answer = "no"
+answer = "yes"
 
 def count_items(column_list):
-    item_types = []
+    item_types = set(column_list)
     count_items = []
+    for item in item_types: #Itera sobre o tipo dos items, para contar cada um
+        count_items.append(column_list.count(item)) #Faz a contagem e adiciona na lista
     return item_types, count_items
-
 
 if answer == "yes":
     # ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
